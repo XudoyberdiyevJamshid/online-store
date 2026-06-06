@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { MahsulotService } from '../../core/services/mahsulot';
 import { SavatService } from '../../core/services/savat';
@@ -10,13 +10,12 @@ import { MahsulotCard } from '../../shared/components/mahsulot-card/mahsulot-car
 
 @Component({
   selector: 'app-mahsulotlar',
-  imports: [Loading, MahsulotCard, ReactiveFormsModule],
+  imports: [Loading, MahsulotCard, ReactiveFormsModule, FormsModule],
   templateUrl: './mahsulotlar.html',
   styleUrl: './mahsulotlar.css',
 })
-export class Mahsulotlar implements OnInit, OnDestroy {
-  qidiruv = new FormControl('');
-  private destroy$ = new Subject<void>();
+export class Mahsulotlar {
+  qidiruv = '';
 
   constructor(
     public mahsulotService: MahsulotService,
@@ -24,25 +23,14 @@ export class Mahsulotlar implements OnInit, OnDestroy {
     private router: Router,
   ) {}
 
-  ngOnInit() {
-    const oqim = this.qidiruv.valueChanges;
-    console.log('Oqim:', oqim);
-    oqim
-      .pipe(
-        debounceTime(300),
-        switchMap((qiymat) => {
-          console.log("So'rov ketdi:", qiymat);
-          return this.mahsulotService.qidirish(qiymat || '');
-        }),
-      )
-      .subscribe((data) => {
-        console.log('Natija:', data);
+  qidirish() {
+    if (this.qidiruv.trim() === '') {
+      this.mahsulotService.hammaMahsulotlarniOl();
+    } else {
+      this.mahsulotService.qidirish(this.qidiruv).subscribe((data) => {
+        this.mahsulotService.mahsulotlar.set(data);
       });
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+    }
   }
 
   savatgaQosh(mahsulot: Mahsulot) {
