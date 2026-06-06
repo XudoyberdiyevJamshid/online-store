@@ -1,1 +1,22 @@
-<p>mahsulotlar works!</p>
+<div>
+  <input [formControl]="qidiruv" placeholder="Mahsulot qidirish..." />
+</div>
+
+@if (mahsulotService.yuklanyapti()) {
+  <app-loading></app-loading>
+} @else {
+  @if (mahsulotService.xato()) {
+    <p>{{ mahsulotService.xato() }}</p>
+  } @else {
+    @for (mahsulot of mahsulotService.mahsulotlar(); track mahsulot.id) {
+      <app-mahsulot-card
+        [mahsulot]="mahsulot"
+        (savatgaQoshildi)="savatgaQosh($event)"
+        (detailKorildi)="detailKor($event)"
+      >
+      </app-mahsulot-card>
+    } @empty {
+      <p>Mahsulot topilmadi</p>
+    }
+  }
+}

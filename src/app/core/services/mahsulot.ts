@@ -27,6 +27,10 @@ export class MahsulotService {
     });
   }
 
+  hammaMahsulotlarniOl2() {
+    return this.http.get<Mahsulot[]>(this.url);
+  }
+
   mahsulotniOl(id: number) {
     return this.http.get<Mahsulot>(`${this.url}/${id}`);
   }
