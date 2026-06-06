@@ -1,22 +1,55 @@
-<nav>
-  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-    🏪 Do'kon
-  </a>
+<nav class="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+  <a routerLink="/" class="text-xl font-bold text-blue-600"> 🏪 Online Do'kon </a>
 
-  <a routerLink="/savat" routerLinkActive="active">
-    🛒 Savat
-    @if (savatService.savatdagiMiqdor() > 0) {
-      <span>({{ savatService.savatdagiMiqdor() }})</span>
+  <div class="flex items-center gap-6">
+    <a
+      routerLink="/"
+      routerLinkActive="text-blue-600 font-semibold"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="text-gray-600 hover:text-blue-600"
+    >
+      Mahsulotlar
+    </a>
+
+    <a
+      routerLink="/savat"
+      routerLinkActive="text-blue-600 font-semibold"
+      class="relative text-gray-600 hover:text-blue-600"
+    >
+      🛒 Savat
+      @if (savatService.savatdagiMiqdor() > 0) {
+        <span
+          class="absolute -top-2 -right-4 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+        >
+          {{ savatService.savatdagiMiqdor() }}
+        </span>
+      }
+    </a>
+
+    @if (authService.kirganmi()) {
+      <span class="text-gray-700 font-medium">
+        👤 {{ authService.kirganFoydalanuvchi()?.ism }}
+      </span>
+      <button
+        (click)="authService.chiqish()"
+        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+      >
+        Chiqish
+      </button>
+    } @else {
+      <a routerLink="/login" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+        Kirish
+      </a>
+      <a
+        routerLink="/register"
+        class="border border-blue-500 text-blue-500 px-4 py-2 rounded-lg hover:bg-blue-50"
+      >
+        Ro'yxatdan o'tish
+      </a>
     }
-  </a>
-
-  @if (authService.kirganmi()) {
-    <span>{{ authService.kirganFoydalanuvchi()?.ism }}</span>
-    <button (click)="authService.chiqish()">Chiqish</button>
-  } @else {
-    <a routerLink="/login" routerLinkActive="active">Kirish</a>
-    <a routerLink="/register" routerLinkActive="active">Ro'yxatdan o'tish</a>
-  }
+  </div>
 </nav>
 
-<router-outlet></router-outlet>
+<main class="max-w-7xl mx-auto px-6 py-8">
+  <router-outlet></router-outlet>
+</main>

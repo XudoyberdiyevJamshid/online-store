@@ -1,18 +1,38 @@
-<div>
-  <input [(ngModel)]="qidiruv" (ngModelChange)="qidirish()" placeholder="Mahsulot qidirish..." />
-</div>
+<div class="flex flex-col gap-6">
+  <div class="flex items-center gap-4">
+    <input
+      [(ngModel)]="qidiruv"
+      (ngModelChange)="qidirish()"
+      placeholder="🔍 Mahsulot qidirish..."
+      class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-400 text-gray-700"
+    />
+  </div>
 
-@if (mahsulotService.yuklanyapti()) {
-  <app-loading></app-loading>
-} @else {
-  @for (mahsulot of mahsulotService.mahsulotlar(); track mahsulot.id) {
-    <app-mahsulot-card
-      [mahsulot]="mahsulot"
-      (savatgaQoshildi)="savatgaQosh($event)"
-      (detailKorildi)="detailKor($event)"
-    >
-    </app-mahsulot-card>
-  } @empty {
-    <p>Mahsulot topilmadi</p>
+  @if (mahsulotService.yuklanyapti()) {
+    <div class="flex justify-center py-20">
+      <app-loading></app-loading>
+    </div>
+  } @else {
+    @if (mahsulotService.xato()) {
+      <div class="bg-red-50 text-red-500 p-4 rounded-xl text-center">
+        {{ mahsulotService.xato() }}
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (mahsulot of mahsulotService.mahsulotlar(); track mahsulot.id) {
+          <app-mahsulot-card
+            [mahsulot]="mahsulot"
+            (savatgaQoshildi)="savatgaQosh($event)"
+            (detailKorildi)="detailKor($event)"
+          >
+          </app-mahsulot-card>
+        } @empty {
+          <div class="col-span-3 text-center py-20 text-gray-400">
+            <p class="text-5xl mb-4">🔍</p>
+            <p class="text-lg">Mahsulot topilmadi</p>
+          </div>
+        }
+      </div>
+    }
   }
-}
+</div>

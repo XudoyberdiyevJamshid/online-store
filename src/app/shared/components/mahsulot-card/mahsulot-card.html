@@ -1,11 +1,36 @@
-<div class="karta">
-  <div class="rasm">{{ mahsulot().rasm }}</div>
-  <h3>{{ mahsulot().nomi }}</h3>
-  <p>{{ mahsulot().kategoriya }}</p>
-  <p>{{ mahsulot().tavsif }}</p>
-  <strong>{{ narxFormatlangan() }}</strong>
-  <div>
-    <button (click)="detailKor()">Batafsil</button>
-    <button (click)="savatgaQosh()">Savatga qo'shish</button>
+<div
+  class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-5 flex flex-col gap-3"
+>
+  <div class="text-6xl text-center py-4 bg-gray-50 rounded-xl">
+    {{ mahsulot().rasm }}
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <span class="text-xs font-medium text-blue-500 bg-blue-50 px-2 py-1 rounded-full w-fit">
+      {{ mahsulot().kategoriya }}
+    </span>
+    <h3 class="text-lg font-bold text-gray-800">{{ mahsulot().nomi }}</h3>
+    <p class="text-sm text-gray-500">{{ mahsulot().tavsif }}</p>
+  </div>
+
+  <div class="mt-auto flex items-center justify-between">
+    <strong class="text-xl font-bold text-gray-900">
+      {{ narxFormatlangan() }}
+    </strong>
+  </div>
+
+  <div class="flex gap-2">
+    <button
+      (click)="detailKor()"
+      class="flex-1 border border-blue-500 text-blue-500 py-2 rounded-xl hover:bg-blue-50 transition-colors text-sm font-medium"
+    >
+      Batafsil
+    </button>
+    <button
+      (click)="savatgaQosh()"
+      class="flex-1 bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition-colors text-sm font-medium"
+    >
+      🛒 Savatga
+    </button>
   </div>
 </div>

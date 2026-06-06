@@ -1,1 +1,44 @@
-<p>mahsulot-detail works!</p>
+@if (yuklanyapti()) {
+  <div class="flex justify-center py-20">
+    <p class="text-gray-400 text-lg">Yuklanmoqda...</p>
+  </div>
+} @else if (mahsulot()) {
+  <div class="max-w-2xl mx-auto">
+    <button
+      (click)="ortgaQayt()"
+      class="flex items-center gap-2 text-gray-500 hover:text-blue-500 mb-6 transition-colors"
+    >
+      ← Ortga
+    </button>
+
+    <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col gap-6">
+      <div class="text-8xl text-center py-8 bg-gray-50 rounded-2xl">
+        {{ mahsulot()!.rasm }}
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="text-sm font-medium text-blue-500 bg-blue-50 px-3 py-1 rounded-full w-fit">
+          {{ mahsulot()!.kategoriya }}
+        </span>
+        <h1 class="text-3xl font-bold text-gray-900">
+          {{ mahsulot()!.nomi }}
+        </h1>
+        <p class="text-gray-500 text-lg">
+          {{ mahsulot()!.tavsif }}
+        </p>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+        <strong class="text-3xl font-bold text-gray-900">
+          {{ mahsulot()!.narxi.toLocaleString() }} so'm
+        </strong>
+        <button
+          (click)="savatgaQosh()"
+          class="bg-blue-500 text-white px-8 py-3 rounded-xl hover:bg-blue-600 transition-colors font-medium text-lg"
+        >
+          🛒 Savatga qo'shish
+        </button>
+      </div>
+    </div>
+  </div>
+}
