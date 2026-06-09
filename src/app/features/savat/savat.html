@@ -1,1 +1,73 @@
-<p>savat works!</p>
+<div class="max-w-2xl mx-auto flex flex-col gap-6">
+  <h1 class="text-3xl font-bold text-gray-900">🛒 Savat</h1>
+
+  @if (savatService.savatMahsulotlar().length === 0) {
+    <div class="text-center py-20 flex flex-col items-center gap-4">
+      <p class="text-6xl">🛒</p>
+      <p class="text-xl text-gray-400">Savat bo'sh</p>
+      <a
+        routerLink="/"
+        class="bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition-colors"
+      >
+        Xarid qilish
+      </a>
+    </div>
+  } @else {
+    <div class="flex flex-col gap-4">
+      @for (item of savatService.savatMahsulotlar(); track item.mahsulot.id) {
+        <div class="bg-white rounded-2xl shadow-sm p-5 flex items-center gap-4">
+          <div class="text-4xl">{{ item.mahsulot.rasm }}</div>
+
+          <div class="flex-1">
+            <h3 class="font-bold text-gray-900">{{ item.mahsulot.nomi }}</h3>
+            <p class="text-blue-500 font-medium">{{ item.mahsulot.narxi.toLocaleString() }} so'm</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button
+              (click)="savatService.kamaytirish(item.mahsulot.id)"
+              class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-lg"
+            >
+              −
+            </button>
+            <span class="font-bold text-lg w-6 text-center">{{ item.miqdori }}</span>
+            <button
+              (click)="savatService.qoshish(item.mahsulot)"
+              class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 text-lg"
+            >
+              +
+            </button>
+          </div>
+
+          <div class="text-right min-w-24">
+            <p class="font-bold text-gray-900">
+              {{ (item.mahsulot.narxi * item.miqdori).toLocaleString() }} so'm
+            </p>
+          </div>
+
+          <button
+            (click)="savatService.ochirish(item.mahsulot.id)"
+            class="text-red-400 hover:text-red-600 transition-colors text-xl"
+          >
+            ✕
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm p-6 flex items-center justify-between">
+      <div>
+        <p class="text-gray-500">Jami:</p>
+        <p class="text-3xl font-bold text-gray-900">
+          {{ savatService.jami().toLocaleString() }} so'm
+        </p>
+      </div>
+      <button
+        (click)="buyurtmaQilish()"
+        class="bg-blue-500 text-white px-8 py-4 rounded-xl hover:bg-blue-600 transition-colors font-medium text-lg"
+      >
+        Buyurtma berish →
+      </button>
+    </div>
+  }
+</div>

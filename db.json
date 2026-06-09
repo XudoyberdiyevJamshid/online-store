@@ -1,7 +1,7 @@
 {
   "mahsulotlar": [
     {
-      "id": 1,
+      "id": "1",
       "nomi": "iPhone 15",
       "narxi": 12000000,
       "kategoriya": "Telefon",
@@ -9,7 +9,7 @@
       "tavsif": "Apple iPhone 15 128GB"
     },
     {
-      "id": 2,
+      "id": "2",
       "nomi": "MacBook Pro",
       "narxi": 35000000,
       "kategoriya": "Laptop",
@@ -17,7 +17,7 @@
       "tavsif": "Apple MacBook Pro M3"
     },
     {
-      "id": 3,
+      "id": "3",
       "nomi": "Samsung TV",
       "narxi": 8000000,
       "kategoriya": "TV",
@@ -25,7 +25,7 @@
       "tavsif": "Samsung 55 inch 4K"
     },
     {
-      "id": 4,
+      "id": "4",
       "nomi": "AirPods Pro",
       "narxi": 4000000,
       "kategoriya": "Quloqchin",
@@ -33,7 +33,7 @@
       "tavsif": "Apple AirPods Pro 2"
     },
     {
-      "id": 5,
+      "id": "5",
       "nomi": "iPad Air",
       "narxi": 9000000,
       "kategoriya": "Planshet",
@@ -41,7 +41,7 @@
       "tavsif": "Apple iPad Air M2"
     },
     {
-      "id": 6,
+      "id": "6",
       "nomi": "PS5",
       "narxi": 11000000,
       "kategoriya": "O'yin",
@@ -49,6 +49,72 @@
       "tavsif": "Sony PlayStation 5"
     }
   ],
-  "users": [{ "id": 1, "ism": "Admin", "email": "admin@test.com", "parol": "1234" }],
-  "buyurtmalar": []
+  "users": [
+    {
+      "id": "1",
+      "ism": "Admin",
+      "email": "admin@test.com",
+      "sir": "1234"
+    },
+    {
+      "ism": "jamshid",
+      "email": "jamshid",
+      "sir": "jamshid",
+      "id": "YmBu0JGoaaU"
+    }
+  ],
+  "buyurtmalar": [
+    {
+      "foydalanuvchi": {
+        "id": "1",
+        "ism": "Admin",
+        "email": "admin@test.com",
+        "sir": "1234"
+      },
+      "mahsulotlar": [
+        {
+          "mahsulot": {
+            "id": "1",
+            "nomi": "iPhone 15",
+            "narxi": 12000000,
+            "kategoriya": "Telefon",
+            "rasm": "📱",
+            "tavsif": "Apple iPhone 15 128GB"
+          },
+          "miqdori": 6
+        },
+        {
+          "mahsulot": {
+            "id": "2",
+            "nomi": "MacBook Pro",
+            "narxi": 35000000,
+            "kategoriya": "Laptop",
+            "rasm": "💻",
+            "tavsif": "Apple MacBook Pro M3"
+          },
+          "miqdori": 3
+        },
+        {
+          "mahsulot": {
+            "id": "3",
+            "nomi": "Samsung TV",
+            "narxi": 8000000,
+            "kategoriya": "TV",
+            "rasm": "📺",
+            "tavsif": "Samsung 55 inch 4K"
+          },
+          "miqdori": 2
+        }
+      ],
+      "jami": 193000000,
+      "manzil": {
+        "ism": "jamshid",
+        "telefon": "adssdasdasdsa",
+        "manzil": "dadasdad"
+      },
+      "sana": "2026-06-09",
+      "id": "pRrQ4yH_GRk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

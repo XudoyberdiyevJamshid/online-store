@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +24,10 @@ export class AuthService {
     }
   }
 
-  kirish(email: string, parol: string) {
-    return this.http.get<User[]>(`${this.url}?email=${email}&parol=${parol}`);
+  kirish(email: string, sir: string) {
+    return this.http
+      .get<User[]>(`${this.url}?email=${email}`)
+      .pipe(map((users) => users.filter((u) => u.sir === sir)));
   }
 
   chiqish() {

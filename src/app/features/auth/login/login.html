@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="bg-white rounded-2xl shadow-md p-8 w-full max-w-md flex flex-col gap-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-gray-900">Kirish</h1>
+      <p class="text-gray-500 mt-1">Hisobingizga kiring</p>
+    </div>
+
+    @if (xato) {
+      <div class="bg-red-50 text-red-500 p-3 rounded-xl text-center text-sm">
+        {{ xato }}
+      </div>
+    }
+
+    <form [formGroup]="forma" (ngSubmit)="kirish()" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="email@example.com"
+          class="border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-400"
+        />
+        @if (forma.get('email')?.invalid && forma.get('email')?.touched) {
+          <p class="text-red-500 text-xs">To'g'ri email kiriting!</p>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">sir</label>
+        <input
+          formControlName="sir"
+          type="sir"
+          placeholder="sir"
+          class="border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-400"
+        />
+        @if (forma.get('sir')?.invalid && forma.get('sir')?.touched) {
+          <p class="text-red-500 text-xs">sirni kiriting!</p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="forma.invalid"
+        class="bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Kirish
+      </button>
+    </form>
+
+    <p class="text-center text-gray-500 text-sm">
+      Hisobingiz yo'qmi?
+      <a routerLink="/register" class="text-blue-500 hover:underline">Ro'yxatdan o'ting</a>
+    </p>
+  </div>
+</div>
